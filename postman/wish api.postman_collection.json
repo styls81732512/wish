@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "2a8ee685-5df5-485d-ba53-aabc16764ab8",
+		"name": "wish api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16173955"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"pm.environment.set(\"authToken\",response.data?.token);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account\":\"testWish\",\n    \"password\":\"testWish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_host}}/adminUsers/auth/login",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"adminUsers",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@gmail.com\",\n    \"name\": \"testWish\",\n    \"password\": \"testWish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_host}}/adminUsers/auth/register",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"adminUsers",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "appointment-services",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"description\":\"test description\",\n    \"price\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_host}}/appointmentServices",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"appointmentServices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_host}}/appointmentServices/list?page=1&limit=10",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"appointmentServices",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": "test",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "isRemove",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "isPublic",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{admin_host}}/appointmentServices?id=da7a051e-d548-45c1-bdb5-194cde220393",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"appointmentServices"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "da7a051e-d548-45c1-bdb5-194cde220393"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"da7a051e-d548-45c1-bdb5-194cde220393\",\n    \"name\": \"test1\",\n    \"description\":\"test description1\",\n    \"price\": 1001,\n    \"isPublic\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_host}}/appointmentServices",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"appointmentServices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"da7a051e-d548-45c1-bdb5-194cde220393\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{admin_host}}/appointmentServices",
+							"host": [
+								"{{admin_host}}"
+							],
+							"path": [
+								"appointmentServices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
