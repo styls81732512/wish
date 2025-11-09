@@ -141,7 +141,7 @@ npm run test
 1. 開啟 Postman 應用程式
 2. 點擊左上角的 **Import** 按鈕
 3. 選擇 **File** 標籤
-4. 瀏覽並選擇 `postman/collections/wish api.postman_collection.json`
+4. 瀏覽並選擇 `postman/wish api.postman_collection.json`
 5. 點擊 **Import** 完成匯入
 
 ![Postman Import](./postman/images/postman-import-collections.png)
@@ -150,7 +150,7 @@ npm run test
 
 1. 在 Postman 中點擊右上角的 **Environments**
 2. 點擊 **Import** 按鈕
-3. 選擇 `postman/environments/local.postman_environment.json`
+3. 選擇 `postman/local.postman_environment.json`
 4. 匯入後，在右上角下拉選單中選擇 **Wish Development** 環境
 
 ![Postman Environment](./postman/images/postman-import-enviroment.png)
