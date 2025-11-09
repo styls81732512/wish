@@ -30,7 +30,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"account\":\"testWish\",\n    \"password\":\"testWish\"\n}",
+							"raw": "{\n    \"email\":\"test@gmail.com\",\n    \"password\":\"testWish\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

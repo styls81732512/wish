@@ -33,11 +33,47 @@ backend/
 
 ## 環境需求
 
-- Node.js >= 16.x
+### 使用 Docker（推薦）
+
+- Docker >= 20.x
+- Docker Compose >= 2.x
+
+### 本地開發
+
+- Node.js >= 20.x
 - npm >= 8.x
 - MySQL >= 8.x
 
-## 安裝
+## 快速開始（使用 Docker）
+
+### 1. 使用 Docker Compose 一鍵啟動
+
+這是最簡單的方式，會自動建立 MySQL 資料庫和 Backend 服務：
+
+```bash
+# cd 到 wish 目錄下
+cd wish
+
+# 啟動所有服務（生產模式）
+docker-compose up -d
+```
+
+服務啟動後：
+
+- Backend API: `http://localhost:3000`
+- MySQL: `localhost:3306`
+
+### 3. 停止服務
+
+```bash
+# 停止服務
+docker-compose down
+
+# 停止服務並刪除資料卷（⚠️ 會清空資料庫）
+docker-compose down -v
+```
+
+## 快速開始（使用 OA Run）
 
 ```bash
 # 進入專案目錄
@@ -51,7 +87,7 @@ npm install
 
 在 `backend` 目錄下建立 `.env` 檔案：
 
-可以直接複製 .env.example
+可以直接複製 .env.example，需自行修改 DB_HOST
 
 ## 資料庫遷移
 
@@ -69,12 +105,18 @@ npm run migration:run --data-source=master
 npm run migration:revert --data-source=master
 ```
 
-## 啟動專案
+## 啟動專案（本地開發）
 
 ```bash
+# 進入 backend 目錄
+cd backend
+
 # 開發模式（支援熱重載）
 npm run start:dev
 
+# Debug 模式（使用 VS Code，按 F5）
+# 或在終端機執行
+npm run start:debug
 ```
 
 ## 測試
@@ -91,6 +133,8 @@ npm run test
 ```
 
 ## Postman API 測試
+
+完成 Docker 啟動或本地啟動後，即可使用 Postman 測試 API。
 
 ### 匯入 Postman Collection
 
